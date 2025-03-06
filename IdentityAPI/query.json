@@ -1,0 +1,14 @@
+{
+    "IdentityAPI": {
+      "countDimoVehicles": "query ",
+      "developerLicenseByTokenId": "query ",
+      "sharedVehicles": "query ",
+      "vehiclesByWalletAddress": "query ",
+      "mmyByOwner": "query ",
+      "mmyByTokenId": "query ",
+      "vehicleSacd": "query ",
+      "rewardsByOwner": "query ",
+      "rewardsHistoryByOwner": "query ",
+      "definitionByDeviceId": "query "
+    }
+  }

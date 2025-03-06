@@ -1,3 +1,22 @@
 {
-    "hello": "world"
+  "TelemetryAPI": {
+    "availableSignals": "query {availableSignals(tokenId: ${tokenId})}",
+    "historicalSignalsBySource": "query { \n  signals(\n    tokenId: ${tokenId}, \n    interval: \"24h\", \n    from: \"${startDate}\", \n    to: \"${endDate}\", \n    filter: {source: \"autopi\"}\n  ) { \n    speed(agg: MED) \n    powertrainType(agg: RAND) \n    powertrainRange(agg: MIN) \n    exteriorAirTemperature(agg: MAX) \n    vehicleIdentificationModel(agg: RAND) \n    chassisAxleRow1WheelLeftTirePressure(agg: MIN) \n    timestamp\n  }\n}",
+    "dailyAverageSpeed": "query ",
+    "dailyMaxSpeed": "query ",
+    "lastCurrentLocation": "query ",
+    "lastApproxLocation": "query ",
+    "historicalExactLocation": "query ",
+    "historicalApproxLocation": "query ",
+    "latestChargeSignals": "query ",
+    "historicalChargeSignals": "query ",
+    "currentOdometerValue": "query ",
+    "historicalOdometerValue": "query ",
+    "currentTirePressureValue": "query ",
+    "historicalTirePressureValue": "query ",
+    "currentFuelLevel": "query ",
+    "historicalFuelLevel": "query ",
+    "currentEngineTemperature": "query ",
+    "historicalEngineTemperature": "query "
+  }
 }
