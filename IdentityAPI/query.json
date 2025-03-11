@@ -1,14 +1,14 @@
 {
     "IdentityAPI": {
-      "countDimoVehicles": "query ",
-      "developerLicenseByTokenId": "query ",
-      "sharedVehicles": "query ",
-      "vehiclesByWalletAddress": "query ",
-      "mmyByOwner": "query ",
-      "mmyByTokenId": "query ",
-      "vehicleSacd": "query ",
-      "rewardsByOwner": "query ",
-      "rewardsHistoryByOwner": "query ",
-      "definitionByDeviceId": "query "
+      "countDimoVehicles": "query GetTotalVehicles { \n  vehicles (first: 100) {\n    totalCount\n  }\n}",
+      "developerLicenseByTokenId": "query GetDevLicenseByTokenId {\n  developerLicense (by: { tokenId: <dev_license_token_id> } ) {\n    owner\n    tokenId\n    alias\n    clientId\n    mintedAt\n    redirectURIs (first: 10) {\n      nodes {\n        uri\n        enabledAt\n      }\n    }\n  }\n}",
+      "sharedVehicles": "query GetVehicleByDevLicense {\n  vehicles(filterBy: { privileged: \"<dev_license_0x>\" }, first: 100) {\n    nodes {\n      owner\n      tokenId\n      definition {\n        make\n        model\n        year\n      }\n    }\n  }\n}",
+      "vehiclesByWalletAddress": "query UserVehiclesByWallet {\n          vehicles(filterBy: { privileged: ${address}}, first: 100) {\n            nodes {\n              tokenId\n              definition {\n                make\n                model\n                year\n              }\n            },\n            totalCount\n          }\n        }",
+      "mmyByOwner": "query GetVehicleMMYByOwner {\n  vehicles(filterBy: {owner: \"<0x_Address>\"}, first: 100) {\n    nodes {\n      tokenId\n      definition {\n        make\n        model\n        year\n      }\n    }\n  }\n}",
+      "mmyByTokenId": "query GetVehicleMMYByTokenId {\n  vehicle (tokenId: <token_id>) {\n    owner\n    definition {\n      make\n      model\n      year\n    }\n  }\n}",
+      "vehicleSacd": "query GetSacdForVehicle {\n  vehicle (tokenId: 3) {\n    sacds (first: 10) {\n      nodes {\n        permissions\n        grantee\n        source\n        createdAt\n        expiresAt\n      }\n    }\n  }\n}",
+      "rewardsByOwner": "query GetRewardsByOwner {\n  rewards (user: \"<0x_address>\") {\n    totalTokens\n  }\n}",
+      "rewardsHistoryByOwner": "query GetRewardHistoryByOwner {\n  vehicles(filterBy: {owner: \"<0x_address>\"}, first: 10) {\n    nodes {\n      earnings {\n        history (first: 10) {\n          edges {\n            node {\n              week\n              aftermarketDeviceTokens\n              syntheticDeviceTokens\n              sentAt\n              beneficiary\n              connectionStreak\n              streakTokens\n            }\n          }\n        }\n        totalTokens\n      }\n    }\n  }\n}",
+      "definitionByDeviceId": "query GetDefinitionByDeviceId {\n  deviceDefinition (by: { id: \"<id_from_tableland>\"})  {\n    year\n    model\n    attributes {\n      name\n      value\n    }\n  }\n}"
     }
   }
